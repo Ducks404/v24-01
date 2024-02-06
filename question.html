@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLEASEE</title>
+    <style>
+        #question {
+            position: fixed;
+            left: 50vw;
+            top: 50vh;
+            transform: translate(-50%,-70%);
+        }
+        #question img {
+            width: 100%;
+        }
+        #answer {
+            position: absolute;
+            left: 50vw;
+            top: 50vh;
+            transform: translate(-50%,-70%);
+            display: none;
+        }
+        #answer img {
+            width: 100%;
+        }
+        .button {
+            width: 10vw;
+            aspect-ratio: 7/3;
+            position: absolute;
+            top: 70vh;
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        #button-yes {
+            background-color: rgb(0, 204, 0);
+            right: 60vw;
+        }
+        #button-yes:hover {
+            background-color: rgb(0,180,0);
+        }
+        #margin-no {
+            background-color: red;
+            left: 60vw;
+            top: 70vh;
+        }
+    </style>
+</head>
+<body style="background-image: url(images/sakura.gif);">
+    <div id="question">
+        <img src="images/valentine.jpg">
+    </div>
+    <div id="answer">
+        <img src="images/YES.jpg">
+        <h1>I LOVE YOU</h1>
+    </div>
+    <div class="button" id="button-yes" onclick="kiss()">
+        <h1>YES</h1>
+    </div>
+    <div class="button"  id="margin-no">
+        <h1>no...</h1>
+    </div>
+    
+    <script type="text/javascript">
+        const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+        // Buttons switching
+        const no = document.getElementById('margin-no')
+        const yes = document.getElementById('button-yes')
+        const boundary = document.getElementById('margin-no')
+        var count = 0
+        no.addEventListener('mouseover', (event) => {
+            messages = ['WHAT ARE YOU DOING?','WHYY????','HUHHHHHHHH??','STOP IT','STOP','stop...','please...']
+            count++;
+            no.style.left = 'auto';
+            no.style.right = '60vw';
+            yes.style.right = 'auto';
+            yes.style.left = '60vw';
+            if (count != 0 && count%5==0) {
+                no.children[0].innerHTML = messages[count/5-1];
+            }
+        })
+        yes.addEventListener('mouseleave', (event) => {
+            yes.style.left = 'auto';
+            yes.style.right = '60vw';
+            no.style.right = 'auto';
+            no.style.left = '60vw';
+        })
+
+        // Final kiss
+        async function kiss() {
+            var audio = new Audio('Ding.m4a');
+            var cheer = new Audio('cheer.mp3')
+            audio.play();
+            cheer.play();
+            const ask = document.getElementById('question')
+            ask.style.display = 'none';
+            const answer = document.getElementById('answer')
+            answer.style.display = 'block';
+            no.style.display = 'none';
+            yes.style.display = 'none';
+            const text = answer.children[1];
+            var message = 'I LOVE YOU'
+            for (let letter = 0; letter < 100; letter++) {
+                await sleep(100)
+                text.innerHTML = message + 'U';
+                message = message + 'U';
+            }
+        }
+
+    </script>
+</body>
+</html>
